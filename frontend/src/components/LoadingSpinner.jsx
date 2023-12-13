@@ -6,8 +6,7 @@ export default function LoadingSpinner() {
         <div className="LoadingSpinner">
             <div className="spinner-container">
                 <div className="loading">
-                </div>
-                Loading
+                </div>Loading
             </div>
         </div>
 
