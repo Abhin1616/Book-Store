@@ -3,6 +3,7 @@ import BackButton from '../components/BackButton';
 import LoadingSpinner from '../components/LoadingSpinner';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { enqueueSnackbar } from 'notistack'
 
 const EditBook = () => {
     const [title, setTitle] = useState('');
@@ -33,10 +34,11 @@ const EditBook = () => {
             .then((res) => {
                 setLoading(false)
                 navigate("/")
+                enqueueSnackbar('Successfully Edited!', { variant: 'success', autoHideDuration: 1500 })
             })
             .catch((e) => {
                 setLoading(false)
-                console.log(e)
+                enqueueSnackbar('Something went wrong!', { variant: 'error', autoHideDuration: 1500 })
             })
     }
     return (
@@ -55,7 +57,7 @@ const EditBook = () => {
                 </div>
                 <div className='my-4'>
                     <label className='text-xl mr-4 text-gray-500' htmlFor="">Published Year</label>
-                    <input type="text" value={year} onChange={(e) => setYear(e.target.value)} className='border-2 border-gray-500 px-4 py-2 w-full' />
+                    <input type="number" value={year} onChange={(e) => setYear(e.target.value)} className='border-2 border-gray-500 px-4 py-2 w-full' />
                 </div>
                 <button className='p-2 bg-sky-300 m-8' onClick={handleEditBook}>Edit Book</button>
             </div>
